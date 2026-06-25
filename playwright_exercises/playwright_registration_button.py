@@ -27,15 +27,8 @@ with sync_playwright() as playwright:
     password_value: str = "password"
     # Заполнение локатора Password
     password_fild.fill(password_value)
+
     # Проверка, что кнопка Registration стала доступна
     expect(registration_button).to_be_enabled()
 
-
-
-
-
     page.wait_for_timeout(5000)
-
-
-    
-
