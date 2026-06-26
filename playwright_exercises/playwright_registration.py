@@ -26,6 +26,7 @@ with sync_playwright() as playwright:
 
     registration_button = page.get_by_test_id("registration-page-registration-button")
     expect(registration_button).to_be_visible()
+    registration_button.click()
 
     page.wait_for_timeout(5000)
 
