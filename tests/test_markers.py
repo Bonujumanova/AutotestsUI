@@ -29,11 +29,9 @@ class TestUserAuthentification:
 
     def test_logout(self):
         ...
-    
+
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.critical
 def test_critical_login():
     ...
-
-
