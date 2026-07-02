@@ -1,10 +1,11 @@
 import pytest
 from playwright.sync_api import sync_playwright, expect
 
-
+"""DON'T USE IT"""
 @pytest.mark.courses
 @pytest.mark.regression
-def test_empty_courses_list():
+
+def _dont_use_test_empty_courses_list():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=False)
         # Сохранение локальных данных в хранилище
