@@ -1,35 +1,26 @@
-from playwright.sync_api import sync_playwright, expect, Page
 import pytest
 
-@pytest.mark.registration
+from pages.registration_page import RegistrationPage
+from pages.dashboard_page import DashboardPage
+
+
+# @pytest.mark.parametrize("email", "username", "password", ("user.name@gmail.com", "username", "password"))
 @pytest.mark.regression
-@pytest.mark.usefixtures("firefox_page_with_state")
-def test_successful_registration(firefox_page: Page ):
+@pytest.mark.registration
+def test_successful_registration(registration_page: RegistrationPage, dashboard_page: DashboardPage):
 
-        firefox_page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+        registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+        email: str = "user.name@gmail.com"
+        username: str = "username"
+        password: str = "password"
 
-        email_field = firefox_page.get_by_test_id("registration-form-email-input").locator("input")
-        email_value: str = "user.name@gmail.com"
-        # Заполнение поля локатора
-        email_field.fill(email_value)
+        registration_page.fill_registration_form(email=email, username=username, password=password)
+        registration_page.click_registration_button()
 
-        username_field = firefox_page.get_by_test_id("registration-form-username-input").locator("input")
-        username_value: str = "username"
-        # Заполнение поля локатора Username
-        username_field.fill(username_value)
+        dashboard_page.find_dashboard_title()
 
-        password_fild = firefox_page.get_by_test_id("registration-form-password-input").locator("input")
-        password_value: str = "password"
-        # Заполнение локатора Password
-        password_fild.fill(password_value)
 
-        registration_button = firefox_page.get_by_test_id("registration-page-registration-button")
-        registration_button.click()
 
-        dashboard_title = firefox_page.get_by_test_id("dashboard-drawer-list-item-title-text")
-        expect(dashboard_title).to_be_visible()
-
-        firefox_page.wait_for_timeout(5000)
 
 
 
