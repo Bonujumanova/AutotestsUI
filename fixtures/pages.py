@@ -21,6 +21,10 @@ def dashboard_page(firefox_page: Page) -> DashboardPage:
     return DashboardPage(page=firefox_page)
 
 @pytest.fixture()
+def dashboard_page_with_state(firefox_page_with_state: Page) -> DashboardPage:
+    return DashboardPage(page=firefox_page_with_state)
+
+@pytest.fixture()
 def courses_list_page(firefox_page_with_state: Page) -> CourseListPage:
     return CourseListPage(page=firefox_page_with_state)
 
